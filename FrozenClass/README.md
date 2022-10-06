@@ -1,10 +1,8 @@
 ## FrozenClass
----
 
 FrozenClass is a decorator to freeze Classes, make objects unmodifiable after instantiated
 
 ## Usage
----
 
 ### code
 ```

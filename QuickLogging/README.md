@@ -1,5 +1,5 @@
 ## FrozenClass
----
+
 a decorator help you configure `logging` faster
 
 
