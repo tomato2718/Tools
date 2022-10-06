@@ -6,6 +6,7 @@ from functools import wraps
 class QuickLogging():
     def __init__(self, path = "./Configs/logging_config.yml"):
         self.path = os.path.abspath(path)
+        
     def __call__(self, func):
         @wraps(func)
         def wrapper(*args, **kwargs):
