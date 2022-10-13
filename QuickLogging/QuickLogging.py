@@ -2,7 +2,6 @@ import logging, logging.config
 import os, yaml
 from functools import wraps
 
-
 class QuickLogging():
     def __init__(self, path = "./Configs/logging_config.yml"):
         self.path = os.path.abspath(path)
