@@ -11,7 +11,7 @@ class QuickLogging():
         @wraps(func)
         def wrapper(*args, **kwargs):
             try:
-                self.__read_config()
+                self.__readConfig()
                 logging.config.dictConfig(self.config)
             except Exception as e:
                 logging.error(e)
@@ -19,7 +19,7 @@ class QuickLogging():
             func(*args, **kwargs)
         return wrapper
 
-    def __read_config(self):
+    def __readConfig(self):
         with open(self.path) as file:
             self.config = yaml.safe_load(file)
 
