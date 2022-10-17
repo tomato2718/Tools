@@ -1,4 +1,4 @@
-## FrozenClass
+## QuickLogging
 
 a decorator help you configure `logging` faster
 
