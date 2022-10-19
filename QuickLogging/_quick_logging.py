@@ -40,5 +40,3 @@ class QuickLogging():
         with open(path_) as file:
             config = yaml.safe_load(file)
         return config
-
-
