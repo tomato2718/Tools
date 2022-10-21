@@ -5,7 +5,7 @@ FrozenClass is a decorator to freeze Classes, make objects unmodifiable after in
 ## Usage
 
 ### code
-```
+```py
 from FrozenClass import FrozenClass
 
 def main():
@@ -27,7 +27,7 @@ if __name__ == '__main__':
 ```
 
 ### output
-```
+```shell 
 >> could not add new attribute 'hello' to 'example'
 >> {'foo': 'foo', 'bar': 'bar'}
 ```

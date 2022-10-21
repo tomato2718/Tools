@@ -37,6 +37,6 @@ class QuickLogging():
     @classmethod
     def __readConfig(cls, path_):
         path_ = os.path.join(os.path.dirname(argv[0]), path_)
-        with open(path_) as file:
+        with open(path_, 'r') as file:
             config = yaml.safe_load(file)
         return config
