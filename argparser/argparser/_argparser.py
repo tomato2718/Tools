@@ -1,7 +1,5 @@
 __all__ = ['ArgParser']
 
-# test cases
-
 class ArgParser():
     def __init__(self, test_case: str = None, test_cases: list = None,
                  show_args: bool = False, parser_id: str = None) -> None:
@@ -42,7 +40,3 @@ class ArgParser():
         for k, v in args_.items():
             print('%s: %s'%(k,str(v)), sep=' ', end=None)
         print('############ main ############')
-
-    def __testcase():
-        # get testcase by file?
-        pass
