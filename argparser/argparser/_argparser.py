@@ -1,10 +1,19 @@
 __all__ = ['ArgParser']
 
+# test cases
+
 class ArgParser():
-    def __init__(self, test_case: str = None, show_args: bool = False, parser_id: str = None) -> None:
-        self.test_case = test_case.split() if test_case else None
+    def __init__(self, test_case: str = None, test_cases: list = None,
+                 show_args: bool = False, parser_id: str = None) -> None:
         self.show_args = show_args
         self.parser_id = parser_id
+        self.test_case = []
+        if test_case:
+            self.test_case.append(test_case)
+        if test_cases:
+            self.test_case.extend(test_cases)
+        if not self.test_case:
+            self.test_case.append(None)
 
     def __call__(self, func):
         from functools import wraps
@@ -15,12 +24,16 @@ class ArgParser():
 
         @wraps(func)
         def wrapper(*args, **kwargs):
-            parser = GetParser.get_parser(self.parser_id)
-            parser = parser.parse_args(self.test_case)
-            kwargs = vars(parser)
-            if self.show_args:
-                self.__show_args(kwargs)
-            func(*args, **kwargs)
+            for i, test_case in enumerate(self.test_case):
+                if test_case:
+                    test_case = test_case.split()
+                    print('######## test case %2d ########'%(i+1))
+                parser = GetParser.get_parser(self.parser_id)
+                parser = parser.parse_args(test_case)
+                kwargs = vars(parser)
+                if self.show_args:
+                    self.__show_args(kwargs)
+                func(*args, **kwargs)
         return wrapper
 
 
@@ -30,6 +43,6 @@ class ArgParser():
             print('%s: %s'%(k,str(v)), sep=' ', end=None)
         print('############ main ############')
 
-    def testcase():
-        # 根據副檔名讀取
+    def __testcase():
+        # get testcase by file?
         pass
