@@ -1,42 +1,39 @@
+__all__ = ['QuickLogging']
+
 import logging, logging.config
-import os
-from sys import argv
 
 import yaml
 
+from ._utils import *
 from ._constants import *
 
 class QuickLogging():
-    def __init__(self, path_ = PATH):
-        self.path = path_
+    def __init__(self, path=PATH):
+        self.path_ = path
     
     # decorator call
     def __call__(self, func):
         from functools import wraps
         @wraps(func)
         def wrapper(*args, **kwargs):
-            try:
-                config_ = self.__readConfig(self.path)
-                logging.config.dictConfig(config_)
-            except Exception as e:
-                logging.error(e)
-                os._exit(0)
+            self.set_logger(self.path_)
             func(*args, **kwargs)
         return wrapper
 
     # function call
     @classmethod
-    def quick_logging(cls, path_ = PATH):
-        try:
-            config_ = cls.__readConfig(path_)
-            logging.config.dictConfig(config_)
-        except Exception as e:
-            logging.error(e)
-            os._exit(0)
+    def set_logger(cls, path = PATH) -> None:
+        config_ = cls.__read_config(path)
+        config_ = set_abs_path(config_, 'filename')
+        logging.config.dictConfig(config_)
+    
+    @staticmethod
+    def get_logger(target: str) -> logging.Logger:
+        return logging.getLogger(target)
 
     @classmethod
-    def __readConfig(cls, path_):
-        path_ = os.path.join(os.path.dirname(argv[0]), path_)
+    def __read_config(cls, path_) -> dict:
+        path_ = get_abs_path(path_)
         with open(path_, 'r') as file:
             config = yaml.safe_load(file)
         return config

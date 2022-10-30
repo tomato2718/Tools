@@ -1,1 +1,1 @@
-PATH = "Configs/logging_config.yml"
+PATH = "conf/logging_config.yml"

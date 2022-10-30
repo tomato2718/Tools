@@ -6,14 +6,12 @@ a decorator help you configure `logging` faster
 
 ### code
 ```py
-import logging
-
-from quicklogging import QuickLogging
+from quicklogging import *
 
 # decorator
 @QuickLogging()
 def main():
-    logger = logging.getlogger(__name__)
+    logger = get_logger(__name__)
     logger.info('foo')
 
 
@@ -22,15 +20,12 @@ if __name__ == '__main__':
 ```
 
 ```py
-import logging
-
-from quicklogging import QuickLogging
-
+from quicklogging import *
 
 def main():
     # function call
-    Quicklogging.quick_logging()
-    logger = logging.get(__name__)
+    set_logger()
+    logger = get_logger(__name__)
     logger.info('foo')
 
 

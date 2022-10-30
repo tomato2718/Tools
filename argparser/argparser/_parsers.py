@@ -1,5 +1,6 @@
+__all__ = ['GetParser', 'GetParsers']
 import argparse
-import re
+from ._utils import *
 
 # for single parser
 # default
@@ -7,9 +8,9 @@ class GetParser():
     @staticmethod
     def get_parser(_) -> argparse.ArgumentParser:
         # instance parser
-        parser = argparse.ArgumentParser(prog = 'My Program',
-                                         description = 'Description of the program',
-                                         epilog = 'Text at the buttom')
+        parser = argparse.ArgumentParser(prog='My Program',
+                                         description='Description of the program',
+                                         epilog='Text at the buttom')
     
         # show the version of program
         parser.add_argument('--version', '-v', action='version', version='%(prog)s 1.0')
