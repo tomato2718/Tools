@@ -1,10 +1,22 @@
+'''argparsing package with more addition functions
+
+available interface:
+@ArgParser()
+'''
+
 from sys import argv
 
 __all__ = ['ArgParser']
 
 class ArgParser():
     def __init__(self, test_case: str=None, test_cases: list=None,
-                 show_args: bool=False, parser_id: str=None) -> None:  
+                 show_args: bool=False, parser_id: str=None) -> None:
+        '''set up argparser
+        - test_case<str>: the command line string for testing, e.g. "-f foo -b bar"
+        - test_cases<list>: list with multiple test_case
+        - show_args<bool>: show the arguments got, default = False
+        - parser_id<str>: specific the parser to use when your project have multiple entry 
+        '''
         self.show_args = show_args
         self.parser_id = parser_id
         if len(argv)-1:
@@ -42,6 +54,9 @@ class ArgParser():
 
 
     def __show_args(self, args_: dict):
+        '''show all arguments recieved
+        arg_<dict>: the arguments received
+        '''
         print('##### recieved arguments #####')
         for k, v in args_.items():
             print('%s: %s'%(k,str(v)))

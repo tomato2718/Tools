@@ -1,12 +1,20 @@
+'''the module to create argument parser
+'''
+
 __all__ = ['GetParser', 'GetParsers']
 import argparse
 from ._utils import *
 
-# for single parser
-# default
+
 class GetParser():
+    '''single parser
+    '''
     @staticmethod
     def get_parser(_) -> argparse.ArgumentParser:
+        '''create argument parser
+        - _: useless
+        - return<argparse.ArgumentParser>: the parser created
+        '''
         parser = argparse.ArgumentParser(prog='My Program',
                                         description='Description of the program',
                                         epilog='Text at the buttom',
@@ -62,21 +70,28 @@ class GetParser():
             
         return parser
 
-# for multiple parser
-# use it if your project have multiple entry
+
 class GetParsers():
+    '''multiple parser
+    '''
     @classmethod
-    def get_parser(cls, id: str) -> argparse.ArgumentParser:
+    def get_parser(cls, name: str) -> argparse.ArgumentParser:
+        '''get parser by id
+        - id<str>: the parser's name
+        - return<argparse.ArgumentParser>: the parser created
+        '''
         res = {
             'main': cls.__main_parser(),
             'sub': cls.__sub_parser()
         } 
-        if id not in res:
+        if name not in res:
             raise Exception('parser not found')
-        return res[id]
+        return res[name]
 
     @staticmethod
     def __main_parser() -> argparse.ArgumentParser:
+        '''create argument parser
+        '''
         parser = None
         return parser
 
